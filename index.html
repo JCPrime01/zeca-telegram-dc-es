@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bilhete Liberado no Whatsapp</title>
+  <title>Bilhete Liberado no Telegram</title>
 
   <script>
   (function(){
@@ -38,8 +38,9 @@
 
     function wireButtons(){
       document.querySelectorAll("[data-trackpanel]").forEach(function(el){
+        var originalHref=el.href;
         var q=new URLSearchParams(getUtms()).toString();
-        el.href="https://mais.red/run/eaizeca"+(q?"?"+q:"");
+        if(q) el.href=originalHref+(originalHref.indexOf("?")>=0?"&":"?")+q;
         el.addEventListener("click",function(e){
           e.preventDefault();
           var dest=el.href;
@@ -145,8 +146,8 @@
       margin-bottom: 24px;
     }
 
-    .card-subtitle .whatsapp-green {
-      color: #009c70;
+    .card-subtitle .telegram-blue {
+      color: #2AABEE;
       font-weight: 500;
     }
 
@@ -154,8 +155,8 @@
       display: block;
       width: 100%;
       max-width: 320px;
-      background-color: #5be86b;
-      color: #040d04;
+      background-color: #2AABEE;
+      color: #ffffff;
       text-decoration: none;
       font-size: 18px;
       font-weight: 700;
@@ -169,7 +170,7 @@
     }
 
     .btn-pegar:hover {
-      background-color: #3fd150;
+      background-color: #1a90cc;
       transform: scale(1.02);
     }
 
@@ -204,12 +205,12 @@
 
       <!-- Título principal -->
       <h2 class="card-title">
-        Bilhete Liberado<br>no Whatsapp
+        Bilhete Liberado<br>no Telegram
       </h2>
 
       <!-- Subtítulo -->
       <div class="card-subtitle">
-        Clique no botão e fale comigo no <span class="whatsapp-green">WhatsApp</span> !<br>👇🏻
+        Clique no botão e fale comigo no <span class="telegram-blue">Telegram</span> !<br>👇🏻
       </div>
 
       <!-- Botão CTA -->
