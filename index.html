@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Odd — Amistosos Internacionais</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+
+  <script>
+  (function(){
+    var B="https://smartico-dashboard-production.up.railway.app/track/f30daf06-f78e-41b3-bb3e-0e34d84773e1";
+    var R="https://smartico-dashboard-production.up.railway.app/track/f30daf06-f78e-41b3-bb3e-0e34d84773e1/redirect";
+    var k="_tid";
+    var sid=sessionStorage.getItem(k)||(Math.random().toString(36).slice(2)+Date.now().toString(36));
+    sessionStorage.setItem(k,sid);
+
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','953058917590545');
+    fbq('track','PageView');
+
+    var sp=new URLSearchParams(location.search);
+    var utms=["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
+    var utmParams={};
+    utms.forEach(function(u){ var v=sp.get(u); if(v) utmParams[u]=v; });
+    if(Object.keys(utmParams).length) sessionStorage.setItem("_utms",JSON.stringify(utmParams));
+
+    function getUtms(){ try{ return JSON.parse(sessionStorage.getItem("_utms")||"{}"); }catch(e){ return {}; } }
+
+    function track(type,meta){
+      fetch(B,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({event_type:type,session_id:sid,url:location.href,metadata:Object.assign({},getUtms(),meta||{})}),
+        keepalive:true
+      }).catch(function(){});
+    }
+
+    track("pageview");
+
+    function wireButtons(){
+      document.querySelectorAll("[data-trackpanel]").forEach(function(el){
+        var q=new URLSearchParams(getUtms()).toString();
+        el.href="https://mais.red/run/eaizeca"+(q?"?"+q:"");
+        el.addEventListener("click",function(e){
+          e.preventDefault();
+          var dest=el.href;
+          if(typeof fbq!=="undefined"){
+            fbq('track','CompleteRegistration');
+          }
+          setTimeout(function(){ window.location.href=dest; }, 350);
+        },true);
+      });
+    }
+
+    wireButtons();
+
+    document.addEventListener("click",function(e){
+      var el=e.target;
+      while(el&&el!==document.body){
+        if(el.dataset&&el.dataset.track){
+          track("click",{label:el.dataset.track,text:el.innerText||""});
+          return;
+        }
+        if(el.tagName==="BUTTON"||el.tagName==="A"){
+          track("click",{tag:el.tagName,text:el.innerText||"",href:el.href||""});
+          return;
+        }
+        el=el.parentElement;
+      }
+    },true);
+  })();
+  </script>
+
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; }
+
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      -webkit-tap-highlight-color: transparent;
+      min-height: 100%;
+      background: #000;
+      position: relative;
+    }
+
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 32px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      min-height: 100vh;
+    }
+
+    .badge {
+      background: linear-gradient(90deg, #0077bb, #2AABEE, #0077bb);
+      border-radius: 999px;
+      padding: 6px 20px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .hero { text-align: center; line-height: 1; }
+
+    .hero-odd {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .hero-odd-word {
+      font-size: 52px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 30px rgba(255,255,255,.2);
+      font-style: italic;
+    }
+
+    .hero-odd-num {
+      font-size: 90px;
+      font-weight: 900;
+      color: #2AABEE;
+      text-shadow: 0 0 30px rgba(42,171,238,.6), 0 0 80px rgba(42,171,238,.3);
+      font-style: italic;
+      line-height: 1;
+    }
+
+    .subhead {
+      font-size: 18px;
+      font-weight: 800;
+      text-align: center;
+      line-height: 1.35;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    .subhead .hl-green { color: #60d5ff; }
+    .subhead .hl-gold  { color: #2AABEE; }
+
+    /* CAROUSEL */
+    .carousel-wrap { width: 100%; }
+    .carousel-viewport { width: 100%; overflow: hidden; border-radius: 16px; }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+
+    .match-card {
+      min-width: 100%;
+      background: rgba(0,0,0,.55);
+      border: 1.5px solid rgba(42,171,238,.35);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(42,171,238,.1), 0 0 60px rgba(42,171,238,.05), inset 0 0 40px rgba(0,0,0,.3);
+    }
+
+    .card-header {
+      background: rgba(255,255,255,.05);
+      border-bottom: 1px solid rgba(42,171,238,.2);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .teams-row {
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .team-side {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+
+    .team-logo {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      font-size: 36px;
+    }
+
+    .team-logo img { width: 46px; height: 46px; object-fit: contain; }
+
+    .team-name {
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+    }
+
+    .vs-text {
+      font-size: 22px;
+      font-weight: 900;
+      color: rgba(255,255,255,.7);
+      letter-spacing: -1px;
+      flex-shrink: 0;
+    }
+
+    .comp-row {
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+    }
+
+    .day-pill {
+      background: #0077bb;
+      border-radius: 6px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .market-row {
+      padding: 12px 16px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .market-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #2AABEE;
+      margin-bottom: 4px;
+    }
+
+    .market-name {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    .odds-row {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .odd-from { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .odd-from-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,.4); text-transform: uppercase; }
+    .odd-from-val { font-size: 28px; font-weight: 900; color: rgba(255,80,80,.7); position: relative; }
+    .odd-from-val::after {
+      content: ''; position: absolute; top: 50%; left: -4px; right: -4px;
+      height: 2.5px; background: rgba(255,80,80,.8); transform: rotate(-8deg);
+    }
+
+    .odd-arrow { font-size: 28px; color: #2AABEE; font-weight: 900; animation: arrow-pulse 1.2s ease-in-out infinite; }
+    @keyframes arrow-pulse { 50% { transform: translateX(4px); opacity: .6; } }
+
+    .odd-to { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .odd-to-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,.4); text-transform: uppercase; }
+    .odd-to-val {
+      font-size: 46px; font-weight: 900; color: #2AABEE;
+      text-shadow: 0 0 20px rgba(42,171,238,.5); line-height: 1;
+    }
+
+    /* DOTS */
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,.2); cursor: pointer;
+      transition: background .3s, transform .3s;
+    }
+    .dot.active { background: #2AABEE; transform: scale(1.3); }
+
+    .scarcity-box {
+      width: 100%;
+      background: rgba(42,171,238,.07);
+      border: 1px solid rgba(42,171,238,.2);
+      border-radius: 12px;
+      padding: 12px 16px;
+      text-align: center;
+    }
+
+    .scarcity-title { font-size: 13px; font-weight: 800; color: #2AABEE; letter-spacing: .5px; margin-bottom: 4px; }
+    .scarcity-sub { font-size: 12px; color: rgba(255,255,255,.55); font-weight: 600; }
+
+    .cta-wrap { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+
+    .cta {
+      width: 100%; border: none; border-radius: 14px; padding: 20px 24px;
+      font-family: 'Montserrat', sans-serif; font-size: 17px; font-weight: 900;
+      letter-spacing: 1.5px; text-transform: uppercase; color: #fff; cursor: pointer;
+      background: linear-gradient(135deg, #0077bb, #2AABEE);
+      box-shadow: 0 0 35px rgba(42,171,238,.4), 0 0 80px rgba(42,171,238,.15), 0 16px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.2);
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      overflow: hidden; position: relative; transition: transform .2s, box-shadow .2s;
+      animation: cta-pulse 2.2s ease-in-out infinite; text-decoration: none;
+    }
+
+    @keyframes cta-pulse {
+      50% { box-shadow: 0 0 55px rgba(42,171,238,.6), 0 0 110px rgba(42,171,238,.25), 0 16px 32px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.2); }
+    }
+
+    .cta:hover { transform: translateY(-3px) scale(1.02); animation: none; }
+
+    .cta::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
+      transform: translateX(-120%) skewX(-15deg);
+      animation: shine 3s infinite 1s;
+    }
+
+    @keyframes shine { to { transform: translateX(220%) skewX(-15deg); } }
+
+    .cta-icon { font-size: 22px; }
+    .cta-text { line-height: 1; }
+    .cta-arrow { font-size: 18px; opacity: .8; }
+
+    .cta-trust { font-size: 11px; color: rgba(255,255,255,.3); font-weight: 500; }
+    .cta-trust b { color: rgba(255,255,255,.5); }
+
+    .disclaimer {
+      text-align: center; font-size: 10px; color: rgba(255,255,255,.2); line-height: 1.6; font-weight: 500;
+    }
+    .disclaimer strong { color: rgba(255,255,255,.35); }
+
+    @media (max-width: 430px) {
+      .page { padding: 16px 16px 20px; gap: 12px; }
+      .badge { font-size: 10px; letter-spacing: 1px; padding: 5px 14px; }
+      .hero-odd-word { font-size: 38px; }
+      .hero-odd-num { font-size: 66px; }
+      .subhead { font-size: 15px; }
+      .teams-row { padding: 10px 12px; gap: 8px; }
+      .team-logo { width: 52px; height: 52px; }
+      .team-logo img { width: 38px; height: 38px; }
+      .team-name { font-size: 11px; }
+      .odd-to-val { font-size: 38px; }
+      .cta { font-size: 15px; padding: 15px 16px; }
+    }
+
+    @media (max-width: 320px) {
+      .hero-odd-word { font-size: 32px; }
+      .hero-odd-num { font-size: 56px; }
+      .subhead { font-size: 13px; }
+    }
+  </style>
+</head>
+
+<body>
+<main class="page">
+
+  <div class="badge">SUPER ODD &nbsp;·&nbsp; AMISTOSOS</div>
+
+  <div class="hero">
+    <div class="hero-odd">
+      <span class="hero-odd-word">ODD</span>
+      <span class="hero-odd-num">100</span>
+    </div>
+  </div>
+
+  <p class="subhead">
+    Odd 100 <span class="hl-green">exclusiva</span> nos jogos<br>
+    de <span class="hl-gold">Hoje</span>
+  </p>
+
+  <div class="carousel-wrap">
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="track">
+
+        <!-- Jogo 1: Canadá vs Bósnia & Herzegovina -->
+        <div class="match-card">
+          <div class="card-header">⚽ Copa do Mundo FIFA™</div>
+          <div class="teams-row">
+            <div class="team-side">
+              <div class="team-logo">🇨🇦</div>
+              <div class="team-name">Canadá</div>
+            </div>
+            <div class="vs-text">VS</div>
+            <div class="team-side">
+              <div class="team-logo">🇧🇦</div>
+              <div class="team-name">Bósnia &amp; Herzegovina</div>
+            </div>
+          </div>
+          <div class="comp-row">Copa do Mundo · Fase de Grupos <span class="day-pill">16:00</span></div>
+          <div class="market-row">
+            <div class="market-label">Mercado</div>
+            <div class="market-name">🔒 Palpite exclusivo</div>
+          </div>
+          <div class="odds-row">
+            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
+            <div class="odd-arrow">»</div>
+            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
+          </div>
+        </div>
+
+        <!-- Jogo 2: Estados Unidos vs Paraguai -->
+        <div class="match-card">
+          <div class="card-header">⚽ Copa do Mundo FIFA™</div>
+          <div class="teams-row">
+            <div class="team-side">
+              <div class="team-logo">🇺🇸</div>
+              <div class="team-name">Estados Unidos</div>
+            </div>
+            <div class="vs-text">VS</div>
+            <div class="team-side">
+              <div class="team-logo">🇵🇾</div>
+              <div class="team-name">Paraguai</div>
+            </div>
+          </div>
+          <div class="comp-row">Copa do Mundo · Fase de Grupos <span class="day-pill" style="background:#e53935;">Hoje 22:00</span></div>
+          <div class="market-row">
+            <div class="market-label">Mercado</div>
+            <div class="market-name">🔒 Palpite exclusivo</div>
+          </div>
+          <div class="odds-row">
+            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
+            <div class="odd-arrow">»</div>
+            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+  </div>
+
+  <div class="scarcity-box">
+    <div class="scarcity-title">⏰ OFERTA POR TEMPO LIMITADO!</div>
+    <div class="scarcity-sub">Garanta agora sua Super Odd antes que esgote.</div>
+  </div>
+
+  <div class="cta-wrap">
+    <a href="https://mais.red/run/eaizeca" class="cta" data-trackpanel>
+      <span class="cta-icon">✈️</span>
+      <span class="cta-text">RECEBER NO TELEGRAM</span>
+      <span class="cta-arrow">›</span>
+    </a>
+    <p class="cta-trust">Acesso gratuito &nbsp;·&nbsp; <b>Sem cadastro</b></p>
+  </div>
+
+  <div class="disclaimer">
+    <strong>+18 · Jogue com responsabilidade.</strong><br>
+    Apostas envolvem risco de perda. Jogar pode causar dependência.
+  </div>
+
+</main>
+
+<script>
+const track = document.getElementById('track');
+const dotsEl = document.getElementById('dots');
+const total = track.children.length;
+let current = 0;
+let autoTimer;
+
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.addEventListener('click', () => goTo(i));
+  dotsEl.appendChild(d);
+}
+
+function goTo(idx) {
+  current = (idx + total) % total;
+  track.style.transform = `translateX(-${current * 100}%)`;
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  resetAuto();
+}
+
+function next() { goTo(current + 1); }
+
+function resetAuto() {
+  clearInterval(autoTimer);
+  autoTimer = setInterval(next, 3500);
+}
+
+resetAuto();
+
+let startX = 0;
+track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+track.addEventListener('touchend', e => {
+  const diff = startX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) diff > 0 ? next() : goTo(current - 1);
+});
+</script>
+
+</body>
+</html>
