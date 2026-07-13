@@ -56,7 +56,20 @@
               keepalive:true
             }).catch(function(){});
           }
-          window.location.href=dest;
+          var ua=navigator.userAgent;
+          var isAndroid=/Android/i.test(ua);
+          var isIOS=/iPhone|iPad|iPod/i.test(ua);
+          var isInApp=/Instagram|FBAN|FBAV/i.test(ua);
+          if(isInApp&&isAndroid){
+            window.location.href='intent://'+dest.replace(/^https?:\/\//,'')+'#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url='+encodeURIComponent(dest)+';end';
+          } else if(isInApp&&isIOS){
+            var ov=document.createElement('div');
+            ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:99999;display:flex;align-items:flex-end;justify-content:center;padding:20px;';
+            ov.innerHTML='<div style="background:#1a1a1a;border-radius:16px;padding:24px;text-align:center;max-width:340px;width:100%;color:#fff;font-family:sans-serif;"><div style="font-size:32px;margin-bottom:12px;">📲</div><p style="font-weight:700;font-size:16px;margin-bottom:8px;">Abrir no Safari</p><p style="color:rgba(255,255,255,0.6);font-size:13px;margin-bottom:20px;">Toque em <strong style="color:#fff;">⋯</strong> no canto superior direito e selecione <strong style="color:#fff;">"Abrir no Safari"</strong></p><button onclick="this.parentElement.parentElement.remove()" style="background:#333;border:none;color:#fff;padding:12px 28px;border-radius:8px;font-size:14px;cursor:pointer;width:100%;">Fechar</button></div>';
+            document.body.appendChild(ov);
+          } else {
+            window.location.href=dest;
+          }
         },true);
       });
     }
