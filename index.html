@@ -45,20 +45,18 @@
           e.preventDefault();
           var dest=el.href;
           if(typeof fbq!=="undefined"){
-            var evId='tg_'+Date.now();
+            var evId='tg_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+            var fbp=(document.cookie.match(/_fbp=([^;]+)/)||[])[1]||null;
+            var fbc=(document.cookie.match(/_fbc=([^;]+)/)||[])[1]||null;
             fbq('track','CompleteRegistration',{},{eventID:evId});
             fetch('https://track-telegram-production.up.railway.app/api/lead',{
               method:'POST',
               headers:{'Content-Type':'application/json'},
-              body:JSON.stringify({
-                fbp:(document.cookie.match(/_fbp=([^;]+)/)||[])[1]||null,
-                fbc:(document.cookie.match(/_fbc=([^;]+)/)||[])[1]||null,
-                userAgent:navigator.userAgent,
-                eventId:evId
-              })
+              body:JSON.stringify({fbp:fbp,fbc:fbc,userAgent:navigator.userAgent,eventId:evId,externalId:evId}),
+              keepalive:true
             }).catch(function(){});
           }
-          setTimeout(function(){ window.location.href=dest; }, 350);
+          window.location.href=dest;
         },true);
       });
     }
